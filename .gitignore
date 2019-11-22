@@ -9,3 +9,4 @@ libs/
 gen/
 .idea/
 project.properties
+*.RIFBackup.*
