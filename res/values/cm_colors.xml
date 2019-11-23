@@ -14,16 +14,19 @@
      limitations under the License.
 -->
 <resources>
-
     <color name="primary">#fcfcfc</color>
     <color name="primaryDark">#000000</color>
-    <color name="accent">#33b5e5</color>
+    <color name="colorAccent">#33b5e5</color>
 
-    <color name="white">#ffffff</color>
-    <color name="black">#212121</color>
+    <color name="textPrimary">#000000</color>
+    <color name="textSecondary">#555555</color>
+	
+    <color name="white">#000000</color>
+    <color name="black">#ffffff</color>
+	
     <color name="default_icon_color">#333333</color>
     <color name="selected_icon_color">#000000</color>
-    
+	
     <color name="light_black">#424242</color>
 
     <color name="tab_1">@color/default_icon_color</color>
