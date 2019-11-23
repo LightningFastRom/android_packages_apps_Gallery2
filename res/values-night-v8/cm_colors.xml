@@ -14,15 +14,15 @@
      limitations under the License.
 -->
 <resources>
-	
-    <color name="primary">#212121</color>
-    <color name="primaryDark">#333333</color>
+
+    <color name="primary">#000000</color>
+    <color name="primaryDark">#000000</color>
     <color name="colorAccent">#33b5e5</color>
 
     <color name="textPrimary">#ffffff</color>
     <color name="textSecondary">#555555</color>
 	
-    <color name="white">#434343</color>
+    <color name="white">#000000</color>
     <color name="black">#ffffff</color>
     <color name="default_icon_color">#fafafa</color>
     <color name="selected_icon_color">#ffffff</color>
