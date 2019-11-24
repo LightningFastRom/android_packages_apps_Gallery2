@@ -21,8 +21,8 @@
     <color name="textPrimary">#000000</color>
     <color name="textSecondary">#555555</color>
 	
-    <color name="white">#000000</color>
-    <color name="black">#ffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 	
     <color name="default_icon_color">#333333</color>
     <color name="selected_icon_color">#000000</color>
