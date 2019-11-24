@@ -26,6 +26,7 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.UriMatcher;
+import android.content.res.Configuration;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
@@ -128,6 +129,20 @@ public final class GalleryActivity extends AbstractGalleryActivity implements On
         if (isPermissionGranted()) {
             init();
         }
+    }
+
+	@Override
+    public void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+		int currentNightMode = configuration.uiMode & Configuration.UI_MODE_NIGHT_MASK;
+		switch (currentNightMode) {
+			case Configuration.UI_MODE_NIGHT_NO:
+				((Toolbar) findViewById(R.id.toolbar)).setTitleTextColor(Color.BLACK);
+				break;
+			case Configuration.UI_MODE_NIGHT_YES:
+				((Toolbar) findViewById(R.id.toolbar)).setTitleTextColor(Color.WHITE);
+				break;
+		}
     }
 
     private void init() {
