@@ -19,7 +19,7 @@
 
 #include "filters.h"
 
-static __inline__ void flipVertical(uint8_t * source, int srcWidth, int srcHeight, uint8_t * destination,
+static __inline__ void flipVertical(char * source, int srcWidth, int srcHeight, char * destination,
         int dstWidth __unused, int dstHeight __unused) {
     //Vertical
     size_t cpy_bytes = sizeof(char) * 4;
@@ -34,8 +34,8 @@ static __inline__ void flipVertical(uint8_t * source, int srcWidth, int srcHeigh
     }
 }
 
-static __inline__ void flipHorizontal(uint8_t * source, int srcWidth, int srcHeight,
-        uint8_t * destination, int dstWidth __unused, int dstHeight __unused) {
+static __inline__ void flipHorizontal(char * source, int srcWidth, int srcHeight,
+        char * destination, int dstWidth __unused, int dstHeight __unused) {
     //Horizontal
     size_t cpy_bytes = sizeof(char) * 4;
     int width = cpy_bytes * srcWidth;
@@ -74,12 +74,11 @@ static __inline__ void flip_fun(int flip, uint8_t * source, int srcWidth, int sr
 }
 
 //90 CCW (opposite of what's used in UI?)
-static __inline__ void rotate90(uint8_t * source, int srcWidth, int srcHeight, uint8_t * destination,
+static __inline__ void rotate90(char * source, int srcWidth, int srcHeight, char * destination,
         int dstWidth __unused, int dstHeight __unused) {
     size_t cpy_bytes = sizeof(char) * 4;
     int width = cpy_bytes * srcWidth;
     int length = srcHeight;
-    int total = length * width;
     for (size_t j = 0; j < length * cpy_bytes; j+= cpy_bytes){
         for (int i = 0; i < width; i+=cpy_bytes){
             int column_disp = (width - cpy_bytes - i) * length;
@@ -123,7 +122,6 @@ static __inline__ void crop(uint8_t * source, int srcWidth, int srcHeight, uint8
     if ((srcWidth > dstWidth + offsetWidth) || (srcHeight > dstHeight + offsetHeight)){
         return;
     }
-    int i = 0;
     int j = 0;
     for (j = offsetHeight; j < offsetHeight + dstHeight; j++){
         memcpy(destination + (j - offsetHeight) * new_row_width, source + j * row_width + offsetWidth * cpy_bytes, cpy_bytes * dstWidth );
@@ -144,8 +142,8 @@ void JNIFUNCF(ImageFilterGeometry, nativeApplyFilterFlip, jobject src, jint srcW
 }
 
 void JNIFUNCF(ImageFilterGeometry, nativeApplyFilterRotate, jobject src, jint srcWidth, jint srcHeight, jobject dst, jint dstWidth, jint dstHeight, jint rotate) {
-    uint8_t* destination = 0;
-    uint8_t* source = 0;
+    char* destination = 0;
+    char* source = 0;
     AndroidBitmap_lockPixels(env, src, (void**) &source);
     AndroidBitmap_lockPixels(env, dst, (void**) &destination);
     rotate_fun(rotate, source, srcWidth, srcHeight, destination, dstWidth, dstHeight);
@@ -154,8 +152,8 @@ void JNIFUNCF(ImageFilterGeometry, nativeApplyFilterRotate, jobject src, jint sr
 }
 
 void JNIFUNCF(ImageFilterGeometry, nativeApplyFilterCrop, jobject src, jint srcWidth, jint srcHeight, jobject dst, jint dstWidth, jint dstHeight, jint offsetWidth, jint offsetHeight) {
-    uint8_t* destination = 0;
-    uint8_t* source = 0;
+    char* destination = 0;
+    char* source = 0;
     AndroidBitmap_lockPixels(env, src, (void**) &source);
     AndroidBitmap_lockPixels(env, dst, (void**) &destination);
     crop(source, srcWidth, srcHeight, destination, dstWidth, dstHeight, offsetWidth, offsetHeight);
@@ -166,19 +164,16 @@ void JNIFUNCF(ImageFilterGeometry, nativeApplyFilterCrop, jobject src, jint srcW
 void JNIFUNCF(ImageFilterGeometry, nativeApplyFilterStraighten, jobject src, jint srcWidth __unused,
         jint srcHeight __unused, jobject dst, jint dstWidth, jint dstHeight,
         jfloat straightenAngle __unused) {
-    uint8_t* destination = 0;
-    uint8_t* source = 0;
+    char* destination = 0;
+    char* source = 0;
     int len = dstWidth * dstHeight * 4;
     AndroidBitmap_lockPixels(env, src, (void**) &source);
     AndroidBitmap_lockPixels(env, dst, (void**) &destination);
     // TODO: implement straighten
     int i = 0;
     for (; i < len; i += 4) {
-        int r = source[RED];
-        int g = source[GREEN];
-        int b = source[BLUE];
         destination[RED] = 128;
-        destination[GREEN] = g;
+        destination[GREEN] = source[GREEN];
         destination[BLUE] = 128;
     }
     AndroidBitmap_unlockPixels(env, dst);
