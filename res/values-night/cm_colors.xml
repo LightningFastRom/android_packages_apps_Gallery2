@@ -15,15 +15,15 @@
 -->
 <resources>
 	
-    <color name="primary">#212121</color>
-    <color name="primaryDark">#333333</color>
+    <color name="primary">#000000</color>
+    <color name="primaryDark">#000000</color>
     <color name="colorAccent">#33b5e5</color>
 
     <color name="textPrimary">#ffffff</color>
     <color name="textSecondary">#555555</color>
 	
-    <color name="white">#434343</color>
-    <color name="black">#ffffff</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
     <color name="default_icon_color">#fafafa</color>
     <color name="selected_icon_color">#ffffff</color>
     
@@ -41,4 +41,10 @@
     <color name="black_transparent_3">#75000000</color>
     <color name="black_transparent_4">#8A000000</color>
     <color name="black_transparent_5">#C1000000</color>
+
+    <color name="white_transparent_1">#1affffff</color>
+    <color name="white_transparent_2">#26ffffff</color>
+    <color name="white_transparent_3">#75ffffff</color>
+    <color name="white_transparent_4">#8Affffff</color>
+    <color name="white_transparent_5">#C1ffffff</color>
 </resources>
